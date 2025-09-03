@@ -6,34 +6,19 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Delivery Route Master</h1>
-    <div id="map-area">
-      <div id="vehicle" class="draggable">🚚</div>
-      <!-- 18 customer pins -->
-      
-      <div class="customer draggable" style="left:30px; top:50px;">📍</div>
-      <div class="customer draggable" style="left:60px; top:80px;">📍</div>
-      <div class="customer draggable" style="left:90px; top:110px;">📍</div>
-      <div class="customer draggable" style="left:120px; top:140px;">📍</div>
-      <div class="customer draggable" style="left:150px; top:170px;">📍</div>
-      <div class="customer draggable" style="left:180px; top:200px;">📍</div>
-      <div class="customer draggable" style="left:210px; top:230px;">📍</div>
-      <div class="customer draggable" style="left:240px; top:260px;">📍</div>
-      <div class="customer draggable" style="left:270px; top:290px;">📍</div>
-      <div class="customer draggable" style="left:300px; top:320px;">📍</div>
-      <div class="customer draggable" style="left:330px; top:350px;">📍</div>
-      <div class="customer draggable" style="left:360px; top:380px;">📍</div>
-      <div class="customer draggable" style="left:390px; top:410px;">📍</div>
-      <div class="customer draggable" style="left:420px; top:440px;">📍</div>
-      <div class="customer draggable" style="left:450px; top:470px;">📍</div>
-      <div class="customer draggable" style="left:480px; top:500px;">📍</div>
-      <div class="customer draggable" style="left:510px; top:530px;">📍</div>
-      <div class="customer draggable" style="left:540px; top:560px;">📍</div>
-    </div>
-    <button id="optimize-btn">Optimize Route</button>
-    <p>Score: <span id="score">0</span></p>
+<div class="container">
+  <h1>Delivery Route Master</h1>
+  <div id="map-area">
+    <canvas id="routeCanvas"></canvas>
+    <div id="vehicle" class="draggable" style="left:0px; top:0px;">🚚</div>
   </div>
-  <script src="script.js"></script>
+  <button id="optimize-btn">Optimize Route</button>
+  <p>Score: <span id="score">0</span></p>
+  <div>
+    <a href="#" id="mobile-link">Mobile Controller Join Link</a><br/>
+    <img id="qr-code" src="qr.png" alt="QR Code for mobile join" style="width:150px; height:150px;"/>
+  </div>
+</div>
+<script src="script.js"></script>
 </body>
 </html>

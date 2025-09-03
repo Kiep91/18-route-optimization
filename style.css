@@ -1,5 +1,5 @@
 body { font-family: Arial, sans-serif; }
-.container { padding: 10px; }
+.container { padding: 10px; position: relative;}
 #map-area {
   position: relative;
   width: 100%;
@@ -7,13 +7,11 @@ body { font-family: Arial, sans-serif; }
   border: 2px solid #ccc;
   margin-bottom: 10px;
 }
-.customer, #vehicle {
-  position: absolute;
-  cursor: pointer;
-  user-select: none;
-}
+.draggable { position: absolute; cursor: pointer; user-select: none; }
 #vehicle { font-size: 32px; }
 .customer { font-size: 24px; }
+#routeCanvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+#qr-code { margin-top: 10px; }
 @media (max-width: 600px) {
   #map-area { height: 300px; }
 }

@@ -1,0 +1,19 @@
+body { font-family: Arial, sans-serif; }
+.container { padding: 10px; }
+#map-area {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  border: 2px solid #ccc;
+  margin-bottom: 10px;
+}
+.customer, #vehicle {
+  position: absolute;
+  cursor: pointer;
+  user-select: none;
+}
+#vehicle { font-size: 32px; }
+.customer { font-size: 24px; }
+@media (max-width: 600px) {
+  #map-area { height: 300px; }
+}

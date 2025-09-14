@@ -1,52 +1,34 @@
-
-let leaderboard = [];
-let selectedRoute = [];
-
-function updateLeaderboard() {
-    leaderboard.sort((a, b) => b.score - a.score);
-    if (leaderboard.length > 10) leaderboard = leaderboard.slice(0, 10);
-    let lb = document.getElementById('leaderboard');
-    lb.innerHTML = leaderboard.map(entry => `<li>${entry.name} - ${entry.phone} Score: ${entry.score}</li>`).join('');
-}
-
-window.onload = function() {
-    document.getElementById('start-game').onclick = function() {
-        let name = document.getElementById('player-name').value;
-        let phone = document.getElementById('player-phone').value;
-        if (name && phone) {
-            document.getElementById('start-screen').style.display = 'none';
-            document.getElementById('game-screen').style.display = 'block';
-        }
-    };
+document.addEventListener('DOMContentLoaded', function() {
+    let selectedRoute = [];
+    const customers = document.querySelectorAll('.customer');
+    const vehicle = document.getElementById('vehicle');
     
-    document.querySelectorAll('.customer').forEach(item => {
-        item.onclick = function() {
-            // Add customer to route if not already added
-            if (!selectedRoute.includes(item.id)) {
-                selectedRoute.push(item.id);
-                // Draw line logic here if needed.
-                item.style.backgroundColor = 'yellow';
+    customers.forEach(customer => {
+        customer.addEventListener('click', function() {
+            // Add clicked customer to route if not already selected
+            const id = customer.getAttribute('data-id');
+            if (!selectedRoute.includes(id)) {
+                selectedRoute.push(id);
+                customer.style.border = '2px solid red'; // mark as selected
             }
-            // End game if 18th is selected
-            if (selectedRoute.length === 18) {
-                // Calculate simple score for demo
-                let score = selectedRoute.length * 10; 
-                document.getElementById('score').innerText = score;
-                // Add to leaderboard with dummy phone ending and score
-                let name = document.getElementById('player-name').value;
-                let phone = document.getElementById('player-phone').value.slice(-4);
-                leaderboard.push({name: name, phone: phone, score: score});
-                updateLeaderboard();
-                alert('Game over! Your score: ' + score);
+            // Calculate distance and animate route
+            let totalDistance = 0;
+            for (let i = 0; i < selectedRoute.length; i++) {
+                let current = document.querySelector(`.customer[data-id="${selectedRoute[i]}"]`);
+                let rect = current.getBoundingClientRect();
+                if (i > 0) {
+                    let prev = document.querySelector(`.customer[data-id="${selectedRoute[i-1]}"]`);
+                    let prevRect = prev.getBoundingClientRect();
+                    totalDistance += Math.hypot(rect.left - prevRect.left, rect.top - prevRect.top);
+                }
             }
-        };
+            document.getElementById('score').innerText = totalDistance.toFixed(2);
+            // Move vehicle to last selected customer location
+            if(selectedRoute.length > 0) {
+                let lastCustomer = document.querySelector(`.customer[data-id="${selectedRoute[selectedRoute.length-1]}"]`);
+                vehicle.style.left = lastCustomer.style.left;
+                vehicle.style.top = lastCustomer.style.top;
+            }
+        });
     });
-
-    document.getElementById('reset-btn').onclick = function() {
-         selectedRoute = [];
-         document.getElementById('score').innerText = '0';
-         document.getElementById('game-screen').style.display = 'none';
-         document.getElementById('start-screen').style.display = 'block';
-         document.querySelectorAll('.customer').forEach(item => item.style.backgroundColor = '');
-    };
-};
+});

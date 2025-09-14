@@ -6,33 +6,19 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Delivery Route Master</h1>
-    <div id="map-area">
-      <div id="vehicle">🚚</div>
-      <!-- 18 fixed customer locations -->
-      <div class="customer" style="left:50px; top:100px;" data-id="1">📍</div>
-      <div class="customer" style="left:150px; top:200px;" data-id="2">📍</div>
-      <!-- ... Add remaining 16 customer elements with distinct data-id, using different coordinates -->
-      <div class="customer" style="left:250px; top:300px;" data-id="3">📍</div>
-      <div class="customer" style="left:350px; top:50px;" data-id="4">📍</div>
-      <div class="customer" style="left:450px; top:400px;" data-id="5">📍</div>
-      <div class="customer" style="left:550px; top:150px;" data-id="6">📍</div>
-      <div class="customer" style="left:650px; top:250px;" data-id="7">📍</div>
-      <div class="customer" style="left:75px; top:350px;" data-id="8">📍</div>
-      <div class="customer" style="left:175px; top:450px;" data-id="9">📍</div>
-      <div class="customer" style="left:275px; top:550px;" data-id="10">📍</div>
-      <div class="customer" style="left:475px; top:150px;" data-id="11">📍</div>
-      <div class="customer" style="left:570px; top:320px;" data-id="12">📍</div>
-      <div class="customer" style="left:370px; top:420px;" data-id="13">📍</div>
-      <div class="customer" style="left:220px; top:120px;" data-id="14">📍</div>
-      <div class="customer" style="left:470px; top:280px;" data-id="15">📍</div>
-      <div class="customer" style="left:120px; top:520px;" data-id="16">📍</div>
-      <div class="customer" style="left:280px; top:80px;" data-id="17">📍</div>
-      <div class="customer" style="left:600px; top:370px;" data-id="18">📍</div>
-    </div>
-    <p>Score: <span id="score">0</span></p>
+<div class="container">
+  <h1>Delivery Route Master</h1>
+  <div id="map-area">
+    <canvas id="routeCanvas"></canvas>
+    <div id="vehicle" class="draggable" style="left:0px; top:0px;">🚚</div>
   </div>
-  <script src="script.js"></script>
+  <button id="optimize-btn">Optimize Route</button>
+  <p>Score: <span id="score">0</span></p>
+  <div>
+    <a href="#" id="mobile-link">Mobile Controller Join Link</a><br/>
+    <img id="qr-code" src="qr.png" alt="QR Code for mobile join" style="width:150px; height:150px;"/>
+  </div>
+</div>
+<script src="script.js"></script>
 </body>
 </html>
